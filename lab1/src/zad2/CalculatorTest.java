@@ -40,11 +40,13 @@ public class CalculatorTest {
 		assertEquals(Double.POSITIVE_INFINITY, calculator.div(5.9, 0), 1e-15);
 	}
 	
+	@Test
+	public void greaterTest1() {
+		assertTrue(calculator.greater(16.7, 16.4));
+	}
 	
 	@Test
-	public void greaterTest() {
-		assertTrue(calculator.greater(16, 4));
-		assertFalse(calculator.greater(3, 5));
-		assertEquals(false, calculator.greater(5, 5));
+	public void greaterTest2() {
+		assertFalse(calculator.greater(3.79, 3.8));
 	}
 }
