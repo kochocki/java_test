@@ -1,0 +1,49 @@
+package lab2;
+
+import org.junit.Test;
+
+import static org.junit.Assert.*;
+
+public class Gra_test {
+	@Test
+	public void cyfrokradTest() {
+		Gra gra = new Gra();
+		assertEquals(null, gra.cyfrokrad(1));
+	}
+	
+	@Test
+	public void cyfrokradTest2() {
+		Gra gra = new Gra();
+		assertEquals(null, gra.cyfrokrad(2));
+	}
+	
+	@Test
+	public void cyfrokradTest3() {
+		Gra gra = new Gra();
+		assertEquals(3, gra.cyfrokrad(4556).toString().length());
+	}
+	
+	@Test
+	public void cyfrokradTest4() {
+		Gra gra = new Gra();
+		assertEquals(1, gra.cyfrokrad(12).toString().length());
+	}
+	
+	@Test
+	public void cyfrokradTest5() {
+		Gra gra = new Gra();
+		assertEquals(Integer.valueOf(2), gra.cyfrokrad(12));
+	}
+	
+	@Test(expected= NieudanyPsikusException.class)
+	public void hultajchochlaTest1() throws NieudanyPsikusException {
+		Gra gra = new Gra();
+		assertNull(gra.hultajchochla(-1));
+	}
+	
+//	@Test
+//	public void hultajchochlaTest2() throws NieudanyPsikusException {
+//		Gra gra = new Gra();
+//		assertEquals((21), gra.hultajchochla(12));
+//	}
+}

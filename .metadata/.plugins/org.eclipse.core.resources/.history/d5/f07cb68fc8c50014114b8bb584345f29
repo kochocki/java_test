@@ -1,0 +1,29 @@
+package lab2;
+
+import static org.hamcrest.CoreMatchers.either;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
+
+import org.junit.BeforeClass;
+import org.junit.Test;
+
+public class nieksztaltekTest {
+	private static Gra gra;
+
+	@BeforeClass
+	public static void setUp() {
+		gra = new Gra();
+	}
+
+	@Test
+	public void nieksztaltekTest1() {
+		assertThat(gra.nieksztaltek(123), is(128));
+	}
+
+	@Test
+	public void nieksztaltekTest2() {
+		assertThat(gra.nieksztaltek(-137),
+				either(is(-187)).or(is(-131)));
+	}
+	
+}

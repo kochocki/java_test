@@ -1,0 +1,101 @@
+package lab2;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+public class Gra implements Psikus {
+
+	private Random generator = new Random();
+	boolean ujemna = false;
+	List<Integer> pozycje = new ArrayList<Integer>(); 
+	
+	
+	void czyUjemna(int liczba) {
+		if (liczba <= -10)
+			ujemna = true;
+		else
+			ujemna = true;
+	}
+
+	@Override
+	public Integer cyfrokrad(Integer liczba) {
+		if (liczba > -10 && liczba < 10)
+			return null;
+		else {
+			czyUjemna(liczba);
+			if (ujemna = true)
+				liczba = -liczba;
+			String liczba_string = liczba.toString();
+
+			// System.out.println("liczba == " + liczba_string);
+			// System.out.println("liczba.length == " +
+			// liczba_string.length());
+
+			StringBuilder sb = new StringBuilder(liczba_string);
+			int pozycja = generator.nextInt(liczba_string.length());
+
+			// System.out.println("Pozycja == " + pozycja);
+
+			sb.deleteCharAt(pozycja);
+			int nowa_liczba = Integer.parseInt(sb.toString());
+			if (ujemna = true)
+				nowa_liczba = -nowa_liczba;
+			System.out.println("Nowa liczba == " + nowa_liczba);
+
+			return nowa_liczba;
+		}
+	}
+
+	@Override
+	public Integer hultajchochla(Integer liczba) throws NieudanyPsikusException {
+		if (liczba > -10 && liczba < 10)
+			throw new NieudanyPsikusException();
+		else {
+			czyUjemna(liczba);
+			if (ujemna = true)
+				liczba = -liczba;
+			String liczba_string = liczba.toString();
+			// System.out.println("liczba == " + liczba_string);
+			// System.out.println("liczba.length == " + liczba_string.length());
+			StringBuilder sb = new StringBuilder(liczba_string);
+			int pozycja1 = generator.nextInt(liczba_string.length());
+			int pozycja2 = -1;
+			do
+				pozycja2 = generator.nextInt(liczba_string.length());
+			while (pozycja2 == pozycja1);
+			System.out.println("Pozycja1 == " + pozycja1);
+			System.out.println("Pozycja1 == " + pozycja2);
+			char litera1 = sb.charAt(pozycja1);
+			char litera2 = sb.charAt(pozycja2);
+			sb.deleteCharAt(pozycja2);
+			sb.insert(pozycja2, litera1);
+			sb.deleteCharAt(pozycja1);
+			sb.insert(pozycja1, litera2);
+			Integer nowa_liczba = Integer.parseInt(sb.toString());
+			czyUjemna(liczba);
+			if (ujemna = true)
+				nowa_liczba = -nowa_liczba;
+			System.out.println("Nowa liczba == " + nowa_liczba);
+			return nowa_liczba;
+		}
+	}
+
+	@Override
+	public Integer nieksztaltek(Integer liczba) {
+		String liczba_string = liczba.toString();
+		StringBuilder sb = new StringBuilder(liczba_string);
+		for (int i = 0; i < sb.length()-1; i++) {
+			if (sb.charAt(i) == 3 || sb.charAt(i) == 7 || sb.charAt(i) == 6)
+				pozycje.add(i);
+		}
+		int pozycja = generator.nextInt(pozycje.size()+1);
+		System.out.println("pozycja == " + pozycja);
+		if (sb.charAt(pozycja) == 3) sb.setCharAt(pozycja, '8');
+		else if (sb.charAt(pozycja) == 7) sb.setCharAt(pozycja, '1');
+		else if (sb.charAt(pozycja) == 6) sb.setCharAt(pozycja, '9');
+		Integer nowa_liczba = Integer.parseInt(sb.toString());
+		System.out.println("Nowa liczba == " + nowa_liczba);
+		return nowa_liczba;
+	}
+}

@@ -1,0 +1,51 @@
+package lab2;
+
+import org.junit.BeforeClass;
+import org.junit.Test;
+
+import static org.junit.Assert.*;
+import static org.hamcrest.CoreMatchers.*;
+
+public class Gra_test {
+	private Gra gra;
+	@BeforeClass
+	public static void setUp() {
+		gra = new Gra();
+	}
+	
+	@Test
+	public void cyfrokradTest() {
+		assertEquals(null, gra.cyfrokrad(1));
+	}
+	
+	@Test
+	public void cyfrokradTest2() {
+		assertEquals(null, gra.cyfrokrad(2));
+	}
+	
+	@Test
+	public void cyfrokradTest3() {
+		assertEquals(3, gra.cyfrokrad(4556).toString().length());
+	}
+	
+	@Test
+	public void cyfrokradTest4() {
+		assertEquals(1, gra.cyfrokrad(12).toString().length());
+	}
+	
+	@Test
+	public void cyfrokradTest5() {
+		assertEquals(Integer.valueOf(2), gra.cyfrokrad(12));
+	}
+	
+	@Test(expected= NieudanyPsikusException.class)
+	public void hultajchochlaTest1() throws NieudanyPsikusException {
+		assertNull(gra.hultajchochla(-1));
+	}
+	
+//	@Test
+//	public void hultajchochlaTest2() throws NieudanyPsikusException {
+//		Gra gra = new Gra();
+//		assertEquals((21), gra.hultajchochla(12));
+//	}
+}
