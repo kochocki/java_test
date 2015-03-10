@@ -56,10 +56,8 @@ public class Gra implements Psikus {
 			while (pozycja2 == pozycja1);
 			char litera1 = sb.charAt(pozycja1);
 			char litera2 = sb.charAt(pozycja2);
-			sb.deleteCharAt(pozycja2);
-			sb.insert(pozycja2, litera1);
-			sb.deleteCharAt(pozycja1);
-			sb.insert(pozycja1, litera2);
+			sb.setCharAt(pozycja2, litera1);
+			sb.setCharAt(pozycja1, litera2);
 			Integer nowa_liczba = Integer.parseInt(sb.toString());
 			if (ujemna)
 				nowa_liczba = -nowa_liczba;
@@ -80,7 +78,6 @@ public class Gra implements Psikus {
 					|| sb.charAt(i) == '6')
 				pozycje.add(i);
 		}
-
 		if (pozycje.size() == 0)
 			if (ujemna)
 				return -Integer.parseInt(sb.toString());
