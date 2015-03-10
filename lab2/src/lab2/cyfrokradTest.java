@@ -25,17 +25,17 @@ public class cyfrokradTest {
 
 	@Test
 	public void cyfrokradTest3() {
-		assertNull(null, gra.cyfrokrad(-1));
+		assertNull(gra.cyfrokrad(-1));
 	}
 
 	@Test
 	public void cyfrokradTest4() {
-		assertNull(null, gra.cyfrokrad(9));
+		assertNull(gra.cyfrokrad(9));
 	}
 
 	@Test
 	public void cyfrokradTest5() {
-		assertNull(null, gra.cyfrokrad(-9));
+		assertNull(gra.cyfrokrad(-9));
 	}
 
 	@Test

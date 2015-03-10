@@ -7,97 +7,90 @@ import java.util.Random;
 public class Gra implements Psikus {
 
 	private Random generator = new Random();
-	boolean ujemna;
+	boolean negative;
 
-	void czyUjemna(int liczba) {
-		if (liczba < 0)
-			ujemna = true;
+	void ifNegative(int number) {
+		if (number < 0)
+			negative = true;
 		else
-			ujemna = false;
+			negative = false;
 	}
 
 	@Override
-	public Integer cyfrokrad(Integer liczba) {
-		if (liczba > -10 && liczba < 10)
+	public Integer cyfrokrad(Integer number) {
+		if (number > -10 && number < 10)
 			return null;
 		else {
-			czyUjemna(liczba);
-			if (ujemna)
-				liczba = -liczba;
-			String liczba_string = liczba.toString();
-
-
-			StringBuilder sb = new StringBuilder(liczba_string);
-			int pozycja = generator.nextInt(liczba_string.length());
-
-
-			sb.deleteCharAt(pozycja);
-			int nowa_liczba = Integer.parseInt(sb.toString());
-			if (ujemna)
-				nowa_liczba = -nowa_liczba;
-			return nowa_liczba;
+			ifNegative(number);
+			if (negative)
+				number = -number;
+			String numberString = number.toString();
+			StringBuilder sb = new StringBuilder(numberString);
+			int position = generator.nextInt(numberString.length());
+			sb.deleteCharAt(position);
+			int newNumber = Integer.parseInt(sb.toString());
+			if (negative)
+				newNumber = -newNumber;
+			return newNumber;
 		}
 	}
 
 	@Override
-	public Integer hultajchochla(Integer liczba) throws NieudanyPsikusException {
-		if (liczba > -10 && liczba < 10)
+	public Integer hultajchochla(Integer number) throws NieudanyPsikusException {
+		if (number > -10 && number < 10)
 			throw new NieudanyPsikusException();
 		else {
-			czyUjemna(liczba);
-			if (ujemna)
-				liczba = -liczba;
-			String liczba_string = liczba.toString();
-			StringBuilder sb = new StringBuilder(liczba_string);
-			int pozycja1 = generator.nextInt(liczba_string.length());
-			int pozycja2;
+			ifNegative(number);
+			if (negative)
+				number = -number;
+			String numberString = number.toString();
+			StringBuilder sb = new StringBuilder(numberString);
+			int position1 = generator.nextInt(numberString.length());
+			int position2;
 			do
-				pozycja2 = generator.nextInt(liczba_string.length());
-			while (pozycja2 == pozycja1);
-			char litera1 = sb.charAt(pozycja1);
-			char litera2 = sb.charAt(pozycja2);
-			sb.deleteCharAt(pozycja2);
-			sb.insert(pozycja2, litera1);
-			sb.deleteCharAt(pozycja1);
-			sb.insert(pozycja1, litera2);
-			Integer nowa_liczba = Integer.parseInt(sb.toString());
-			if (ujemna)
-				nowa_liczba = -nowa_liczba;
-			return nowa_liczba;
+				position2 = generator.nextInt(numberString.length());
+			while (position2 == position1);
+			char character1 = sb.charAt(position1);
+			char character2 = sb.charAt(position2);
+			sb.setCharAt(position2, character1);
+			sb.setCharAt(position1, character2);
+			Integer newNumber = Integer.parseInt(sb.toString());
+			if (negative)
+				newNumber = -newNumber;
+			return newNumber;
 		}
 	}
 
 	@Override
-	public Integer nieksztaltek(Integer liczba) {
-		czyUjemna(liczba);
-		if (ujemna)
-			liczba = -liczba;
-		List<Integer> pozycje = new ArrayList<Integer>();
-		String liczba_string = liczba.toString();
-		StringBuilder sb = new StringBuilder(liczba_string);
+	public Integer nieksztaltek(Integer number) {
+		ifNegative(number);
+		if (negative)
+			number = -number;
+		List<Integer> positions = new ArrayList<Integer>();
+		String numberString = number.toString();
+		StringBuilder sb = new StringBuilder(numberString);
 		for (int i = 0; i < sb.length(); i++) {
 			if (sb.charAt(i) == '3' || sb.charAt(i) == '7'
 					|| sb.charAt(i) == '6')
-				pozycje.add(i);
+				positions.add(i);
 		}
-
-		if (pozycje.size() == 0)
-			if (ujemna)
+		if (positions.size() == 0)
+			if (negative)
 				return -Integer.parseInt(sb.toString());
 			else
 				return Integer.parseInt(sb.toString());
 		else {
-			int pozycja = generator.nextInt(pozycje.size());
-			if (sb.charAt(pozycje.get(pozycja)) == '3')
-				sb.setCharAt((pozycje.get(pozycja)), '8');
-			else if (sb.charAt(pozycje.get(pozycja)) == '7')
-				sb.setCharAt((pozycje.get(pozycja)), '1');
-			else if (sb.charAt(pozycje.get(pozycja)) == '6')
-				sb.setCharAt((pozycje.get(pozycja)), '9');
-			Integer nowa_liczba = Integer.parseInt(sb.toString());
-			if (ujemna)
-				nowa_liczba = -nowa_liczba;
-			return nowa_liczba;
+			int position = generator.nextInt(positions.size());
+			if (sb.charAt(positions.get(position)) == '3')
+				sb.setCharAt((positions.get(position)), '8');
+			else if (sb.charAt(positions.get(position)) == '7')
+				sb.setCharAt((positions.get(position)), '1');
+			else if (sb.charAt(positions.get(position)) == '6')
+				sb.setCharAt((positions.get(position)), '9');
+			Integer newNumber = Integer.parseInt(sb.toString());
+			if (negative)
+				newNumber = -newNumber;
+			return newNumber;
 		}
 	}
 }
