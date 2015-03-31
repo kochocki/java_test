@@ -1,0 +1,19 @@
+package com.example.mockdemo.app;
+
+import org.junit.Test;
+import org.mockito.Mock;
+
+import com.example.mockdemo.messenger.ConnectionStatus;
+import com.example.mockdemo.messenger.MessageService;
+
+public class MockitoTest {
+	@Mock
+	private MessageService mock;
+	private Messenger Messenger = new Messenger(mock);
+	 
+	@Test
+	public void test() { 
+		
+		when(Messenger.testConnection("wp.pl")).thenReturn(0);
+	}
+}

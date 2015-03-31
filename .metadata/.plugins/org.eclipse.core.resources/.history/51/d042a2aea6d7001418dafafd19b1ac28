@@ -1,0 +1,39 @@
+package com.example.mockdemo.app;
+
+import org.junit.Before;
+import org.junit.Test;
+import org.mockito.Mock;
+
+import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
+
+import com.example.mockdemo.messenger.ConnectionStatus;
+import com.example.mockdemo.messenger.MessageService;
+
+public class MockitoTest {
+	@Mock
+	private MessageService mock = mock(MessageService.class);
+	
+	private Messenger messenger = new Messenger(mock);
+	 
+	@Test
+	public void test() {
+		when(mock.checkConnection("wp.pl")).thenReturn(ConnectionStatus.SUCCESS);
+		assertEquals(ConnectionStatus.SUCCESS, messenger.testConnection("wp.pl"));
+	}
+//	private Messenger myApp;
+//	private MessageService mock;
+//	
+//	@Before
+//	public void setUp() {
+//		mock = mock(MessageService.class);
+//		myApp = new Messenger(mock);
+//	}
+//	
+//	@Test
+//	public void testCheckConnection1() {
+//		when(mock.checkConnection("wp.pl")).thenReturn(ConnectionStatus.SUCCESS);
+//		assertEquals(0, myApp.testConnection("wp.pl"));
+//	}
+//	
+}

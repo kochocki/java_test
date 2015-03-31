@@ -24,78 +24,76 @@ public class EasyMockTest {
 	private MessageService mock;
 
 	@TestSubject
-	private Messenger Messenger = new Messenger(mock);
+	private Messenger messenger = new Messenger(mock);
 
 	@Test
-	public void checkConnectionTest() {
+	public void testConnectionTest() {
 		expect(mock.checkConnection("inf.ug.edu")).andReturn(
 				ConnectionStatus.FAILURE);
 		replay(mock);
-		assertEquals(ConnectionStatus.FAILURE,
-				mock.checkConnection("inf.ug.edu"));
+		assertEquals(1, messenger.testConnection("inf.ug.edu"));
 		verify(mock);
 	}
 
 	@Test
-	public void checkConnectionTest2() {
+	public void testConnectionest2() {
 		expect(mock.checkConnection("wp.pl")).andReturn(
 				ConnectionStatus.SUCCESS);
 		replay(mock);
-		assertEquals(ConnectionStatus.SUCCESS, mock.checkConnection("wp.pl"));
+		assertEquals(0, messenger.testConnection("wp.pl"));
 		verify(mock);
 	}
 
 	@Test
-	public void checkConnectionTest3() {
+	public void testConnectionTest3() {
 		expect(mock.checkConnection("inf.ug.edu.pl")).andReturn(
 				ConnectionStatus.SUCCESS);
 		replay(mock);
-		assertEquals(ConnectionStatus.SUCCESS,
-				mock.checkConnection("inf.ug.edu.pl"));
+		assertEquals(0, messenger.testConnection("inf.ug.edu.pl"));
 		verify(mock);
 	}
 
 	@Test
-	public void sendTest() throws MalformedRecipientException {
+	public void sendMessageTest() throws MalformedRecipientException {
 		expect(mock.send("inf.ug.edu.pl", "foo")).andReturn(SendingStatus.SENT);
 		replay(mock);
-		assertEquals(SendingStatus.SENT, mock.send("inf.ug.edu.pl", "foo"));
+		assertEquals(0, messenger.sendMessage("inf.ug.edu.pl", "foo"));
 		verify(mock);
 	}
 
-	@Test(expected = MalformedRecipientException.class)
-	public void sendTest2() throws MalformedRecipientException {
+	@Test
+	public void sendMessageTest2() throws MalformedRecipientException {
 		expect(mock.send("i.", "foo")).andThrow(
 				new MalformedRecipientException());
 		replay(mock);
-		mock.send("i.", "foo");
+		assertEquals(2, messenger.sendMessage("i.", "foo"));
 		verify(mock);
 	}
-	
-	@Test(expected = MalformedRecipientException.class)
-	public void sendTest3() throws MalformedRecipientException {
+
+	@Test
+	public void sendMessageTest3() throws MalformedRecipientException {
 		expect(mock.send("wp.pl", "fo")).andThrow(
 				new MalformedRecipientException());
 		replay(mock);
-		mock.send("wp.pl", "fo");
+		assertEquals(2, messenger.sendMessage("wp.pl", "fo"));
 		verify(mock);
 	}
-	
-	@Test(expected = MalformedRecipientException.class)
-	public void sendTest4() throws MalformedRecipientException {
+
+	@Test
+	public void sendMessageTest4() throws MalformedRecipientException {
 		expect(mock.send("wp", "fo")).andThrow(
 				new MalformedRecipientException());
 		replay(mock);
-		mock.send("wp", "fo");
+		assertEquals(2, messenger.sendMessage("wp", "fo"));
 		verify(mock);
 	}
-	
+
 	@Test
-	public void sendTest5() throws MalformedRecipientException {
+	public void sendMessageTest5() throws MalformedRecipientException {
 		expect(mock.send("wp.pl", "foobar")).andReturn(
 				SendingStatus.SENDING_ERROR);
 		replay(mock);
-		assertEquals(SendingStatus.SENDING_ERROR, mock.send("wp.pl", "foobar"));
+		assertEquals(1, messenger.sendMessage("wp.pl", "foobar"));
 		verify(mock);
 	}
 }
