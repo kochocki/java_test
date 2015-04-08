@@ -1,0 +1,7 @@
+com\example\mockdemo\app\MessengerTest.class
+com\example\mockdemo\app\DynamicProxyTest$IMessageServiceHandler.class
+com\example\mockdemo\app\MessengerSteps.class
+com\example\mockdemo\app\DummyTest.class
+com\example\mockdemo\app\DynamicProxyTest.class
+com\example\mockdemo\app\MockitoTest.class
+com\example\mockdemo\app\EasyMockTest.class
