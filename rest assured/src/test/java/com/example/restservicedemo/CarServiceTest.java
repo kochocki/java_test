@@ -1,13 +1,11 @@
 package com.example.restservicedemo;
 
 import static com.jayway.restassured.RestAssured.*;
-import static com.jayway.restassured.matcher.RestAssuredMatchers.*;
 import static org.hamcrest.Matchers.*;
 import static org.hamcrest.MatcherAssert.*;
 import static com.jayway.restassured.module.jsv.JsonSchemaValidator.*;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import org.junit.BeforeClass;
 import org.junit.Test;

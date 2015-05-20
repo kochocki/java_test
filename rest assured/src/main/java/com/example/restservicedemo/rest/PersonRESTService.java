@@ -10,12 +10,14 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 
 import com.example.restservicedemo.domain.Person;
+import com.example.restservicedemo.service.PersonHasCarManager;
 import com.example.restservicedemo.service.PersonManager;
 
 @Path("persons")
 public class PersonRESTService {	
 	
 	private PersonManager pm = new PersonManager();
+	private PersonHasCarManager phcm = new PersonHasCarManager();
 	
 	@GET
 	@Path("/{personId}")
@@ -55,5 +57,14 @@ public class PersonRESTService {
 		pm.clearPersons();
 		String result = "You killed all people";
 		return Response.status(202).entity(result).build(); 
+	}
+	
+	@GET
+	@Path("/{personId}/addCar/{carId}")
+	@Produces("text/html")
+	public Response addCarToPerson(@PathParam("personId") int personId, @PathParam("carId") int carId) {
+		phcm.addCarToPerson(personId, carId);
+		String result = "Car added";
+		return Response.status(201).entity(result).build(); 
 	}
 }
