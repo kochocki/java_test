@@ -1,4 +1,4 @@
-package com.psikus.normal;
+package com.psikus.normal.bdd;
 
 
 import static org.junit.Assert.*;
@@ -30,15 +30,30 @@ public class GraSteps {
 		assertNull(gra.cyfrokrad(number));
 	}
 	
-	@Then("cyfrokrad returns either $number1 or $number2")
-	public void cyfrokradTest(Integer number1, Integer number2) {
+	@Then("cyfrokrad with 3 possibilities returns either $number1 or $number2 or $number3")
+	public void cyfrokradLengthOf3Test(Integer number1, Integer number2, Integer number3) {
+		assertThat(gra.cyfrokrad(number), either(is(number1)).or(is(number2)).or(is(number3)));
+	}
+	
+	@Then("cyfrokrad with 2 possibilities returns either $number1 or $number2")
+	public void cyfrokradLengthOf2Test(Integer number1, Integer number2) {
 		assertThat(gra.cyfrokrad(number), either(is(number1)).or(is(number2)));
 	}
 	
 	@Then("nieksztaltek returns either $number1 or $number2")
-	public void nieksztaltekTest(Integer number1, Integer number2) {
+	public void nieksztaltekWith2PossibilitiesTest(Integer number1, Integer number2) {
 		assertThat(gra.nieksztaltek(number), either(is(number1)).or(is(number2)));
 	}
+	
+	@Then("nieksztaltek returns $number1")
+	public void nieksztaltekWith1PossibilityTest(Integer number1) {
+		assertThat(gra.nieksztaltek(number), is(number1));
+	}
+	
+//	@Then("nieksztaltek returns either $number1 or $number2 or $number3")
+//	public void nieksztaltekWith3PossibilitiesTest(Integer number1, Integer number2, Integer number3) {
+//		assertThat(gra.nieksztaltek(number), either(is(number1)).or(is(number2)).or(is(number3)));
+//	}
 	
 	@Then("hultajchochla throws NieduanyPsikusException")
 	public void hultajchochlaThrowsNieudanyPsikusException() {

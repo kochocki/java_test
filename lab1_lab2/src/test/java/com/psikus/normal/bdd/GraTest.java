@@ -1,4 +1,4 @@
-package com.psikus.normal;
+package com.psikus.normal.bdd;
 
 import org.jbehave.core.configuration.Configuration;
 import org.jbehave.core.configuration.MostUsefulConfiguration;
